@@ -31,7 +31,7 @@ replicaCount: 1
 # the exact same image bits on every node/registry pull.
 image:
   repository: odaafane/glpi-eol
-  tag: "12.0.0@sha256:5d650bd41eb111b377284f9e11b164c19bb9618142321564a8b2570689dcd600"
+  tag: "12.0.1@sha256:8ae4d9aa61d680ada65bb2181acdf57f0891ca6750cfb4cab0b0103a2c27efa0"
   # IfNotPresent = reuse the node's cached image (it's digest-pinned, so cache
   # is safe). Use "Always" only if you re-tag the same version with new content.
   pullPolicy: IfNotPresent
