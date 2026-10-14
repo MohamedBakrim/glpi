@@ -1,5 +1,5 @@
 # =============================================================================
-# MYHELM — GLPI 11 Helm chart values
+# MYHELM — GLPI 12 Helm chart values
 # =============================================================================
 # Every setting is commented below so you always know what it does.
 # RULE OF THUMB: change VALUES here, never inside charts/*.tgz (subcharts) —
@@ -24,14 +24,14 @@
 # so raising this above 1 needs RWX storage first. Ignored if autoscaling is on.
 replicaCount: 1
 
-# The PHP-FPM container that runs GLPI. This image CONTAINS the GLPI 11 code
-# (29 files at /var/www/html) — nothing is downloaded at install time.
+# The PHP-FPM container that runs GLPI. This image CONTAINS the GLPI 12 code
+# (shipped at /var/www/html) — nothing is downloaded at install time.
 # It speaks FastCGI on port 9000, NOT HTTP: browsers can't talk to it directly,
 # that's what the nginx Deployment below is for. Digest pin (@sha256) guarantees
 # the exact same image bits on every node/registry pull.
 image:
   repository: mdbak/glpi-php-fpm
-  tag: "11.0.11@sha256:10a17a227e3f4d8a8c9125809b31909e1263de4f30a6d5f4715dcbfebc99f852"
+  tag: "12.0.0@sha256:2de6ad6765e95ba9803ada0cf07b5ae8db4c216ea7096ac0210c6e8e17ecaf41"
   # IfNotPresent = reuse the node's cached image (it's digest-pinned, so cache
   # is safe). Use "Always" only if you re-tag the same version with new content.
   pullPolicy: IfNotPresent
@@ -44,10 +44,10 @@ nginx:
   # the php-fpm Service on 9000; serves static files (css/js/images) itself.
   image:
     repository: mdbak/glpi-nginx
-    # Aligned with the app image / Chart.yaml appVersion (11.0.11) so nginx
+    # Aligned with the app image / Chart.yaml appVersion (12.0.0) so nginx
     # serves the matching GLPI static assets (css/js). Verified to exist on
-    # Docker Hub (digest = manifest-list digest of tag 11.0.11).
-    tag: "11.0.11@sha256:22b85745ae82567e5bc8d5a6dc55b95e9ccb17eaad54d7c330d30d0ac888a654"
+    # Docker Hub (digest = manifest-list digest of tag 12.0.0).
+    tag: "12.0.0@sha256:70bbe29cab722074986afec9c2854bfb1f212c8ed00b46f291163332c53ec871"
     pullPolicy: IfNotPresent
 
   # The Service for nginx = the HTTP entry point. The Ingress and the
