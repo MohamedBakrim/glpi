@@ -1,5 +1,5 @@
 # Built packages — regenerate with: helm package . --destination dist/
-##dist/
+#dist/
 
 # Editor/backup junk
 *.bak
