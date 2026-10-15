@@ -12,4 +12,4 @@ dependencies:
 description: GLPI 12 (PHP-FPM + nginx + MariaDB + Valkey) on Kubernetes
 name: myhelm
 type: application
-version: 0.3.0
+version: 0.3.1

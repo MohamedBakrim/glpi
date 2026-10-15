@@ -71,6 +71,7 @@ Full, heavily commented reference lives in [`values.yaml`](values.yaml). The mos
 | `nginx.service.type` / `.port` | `ClusterIP` / `80` | the public HTTP Service (Ingress/test/HTTPRoute target) |
 | `service.port` | `9000` | php-fpm FastCGI Service — internal only, never expose it |
 | `ingress.enabled` / `.hosts` / `.tls` | `true` / `myhelm.local` / secret `myhelm-tls` | HTTPS front door (cert-manager `selfsigned` issuer) |
+| `glpi.urlBase` | `""` | public base URL stored in GLPI's DB (`url_base`); **set this in prod** (e.g. `https://glpi.example.com`) or generated links/exports may point at `localhost` |
 | `httpRoute.enabled` | `false` | Gateway API alternative to Ingress |
 | `nodeSelector` / `mariadb.nodeSelector` / `valkey.nodeSelector` | `{}` | **empty by default** — pin to *your* node if using local-path/RWO storage |
 | `jobs.dbInit.enabled` | `true` | master switch for all four install/upgrade hook Jobs |

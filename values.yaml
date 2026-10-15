@@ -278,6 +278,26 @@ tolerations: []
 affinity: {}
 
 # -----------------------------------------------------------------------------
+# GLPI APPLICATION SETTINGS
+# -----------------------------------------------------------------------------
+
+# Public base URL of this GLPI instance — THE fix for links/exports generated
+# with http://localhost (e.g. /Form/Export downloads pointing at localhost).
+# GLPI stores this in the DB ("Base URL", key `url_base`) and uses it to build
+# ABSOLUTE urls: file downloads, form exports, email notification links...
+# When empty, GLPI derives URLs from the request's Host header, which is wrong
+# behind an ingress/proxy whenever the DB still holds a localhost value (often
+# baked in by the very first install).
+# Set it to the REAL dns, no trailing slash, e.g.:
+#   glpi:
+#     urlBase: "https://glpi.example.com"
+# Applied by the configure hook job (`php bin/console config:set url_base ...`)
+# on every install/upgrade, so it is self-healing — but it also means changes
+# made in the GLPI UI (Setup → General → Base URL) get overwritten on upgrade.
+glpi:
+  urlBase: ""
+
+# -----------------------------------------------------------------------------
 # JOBS — the post-install/upgrade hook chain
 # -----------------------------------------------------------------------------
 # Order: verify-dir (w5, root) → install (w10) → configure (w20) → cache (w30).
