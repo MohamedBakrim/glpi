@@ -455,7 +455,7 @@ filesPersistence:
 # The backup PVC stays Pending until the first job runs (WaitForFirstConsumer)
 # — that's normal, and why you must install WITHOUT --wait.
 backup:
-  enabled: true
+  enabled: false
   schedule: "0 2 * * *"    # cron expression: daily at 02:00
 
   # Snapshot the file PVCs next to the DB dump. Each needs its claim enabled
