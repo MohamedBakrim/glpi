@@ -43,10 +43,6 @@ spec:
           {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          {{- with .Values.phpfpm.command }}
-          command:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
           env:
             - name: DB_HOST
               value: "{{ .Release.Name }}-mariadb"
