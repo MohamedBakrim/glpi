@@ -79,6 +79,7 @@ Full, heavily commented reference lives in [`values.yaml`](values.yaml). The mos
 | `*Persistence` (`etc`/`files`/`marketplace`) | `true` / 50Mi / 10Gi / 2Gi | GLPI config, uploads/sessions, plugins |
 | `backup.enabled` / `.schedule` / `.retentionDays` | `true` / `0 2 * * *` / `7` | nightly dump+tar with pruning |
 | `cronjob.enabled` / `.schedule` | `true` / `*/2 * * * *` | GLPI's own task scheduler (schema-integrity guarded) |
+| `php.opcache.*` | `enabled: true`, `validateTimestamps: false` | tune the image's built-in OPcache via a mounted `zz-opcache.ini` (no image rebuild) |
 | `pdb.enabled` / `networkPolicy.enabled` | `true` / `true` | disruption budget; DB-only ingress policy |
 | `autoscaling.enabled` | `false` | HPA for php-fpm (needs RWX + replicas > 1 to be useful) |
 | `externalSecrets.enabled` | `false` | sync credentials from a ClusterSecretStore instead of hand-making the Secret |
