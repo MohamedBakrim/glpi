@@ -73,6 +73,24 @@ RUN rm -rf \
     && /usr/local/bin/glpi-verify-dir.sh \
     && rm -f /var/www/html/install/install.php
 
+# Copy custom logo images
+COPY custom-modifications/SYNAPSE2_white_100x55.png /var/www/html/public/pics/fd_logo.png
+COPY custom-modifications/glpi.png /var/www/html/public/pics/glpi.png
+COPY custom-modifications/SYNAPSE2_normal_250x138.png /var/www/html/public/pics/login_logo_glpi.png
+COPY custom-modifications/logo-G-100-black.png /var/www/html/public/pics/logos/logo-G-100-black.png
+COPY custom-modifications/logo-G-100-grey.png /var/www/html/public/pics/logos/logo-G-100-grey.png
+COPY custom-modifications/logo-G-100-white.png /var/www/html/public/pics/logos/logo-G-100-white.png
+COPY custom-modifications/SYNAPSE2_normal_100x55.png /var/www/html/public/pics/logos/logo-GLPI-100-black.png
+COPY custom-modifications/SYNAPSE2_grey_100x55.png /var/www/html/public/pics/logos/logo-GLPI-100-grey.png
+COPY custom-modifications/SYNAPSE2_white_100x55.png /var/www/html/public/pics/logos/logo-GLPI-100-white.png
+COPY custom-modifications/SYNAPSE2_normal_250x138.png /var/www/html/public/pics/logos/logo-GLPI-250-black.png
+COPY custom-modifications/SYNAPSE2_grey_250x138.png /var/www/html/public/pics/logos/logo-GLPI-250-grey.png
+COPY custom-modifications/SYNAPSE2_white_250x138.png /var/www/html/public/pics/logos/logo-GLPI-250-white.png
+
+
+# The web installer must never be reachable in production.
+RUN rm -rf /var/www/html/install/install.php
+
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
     CMD php-fpm -t && \
         php -r "exit(@fsockopen('127.0.0.1', 9000) ? 0 : 1);" || exit 1
