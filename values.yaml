@@ -31,7 +31,7 @@ replicaCount: 1
 # the exact same image bits on every node/registry pull.
 image:
   repository: odaafane/glpi-php-fpm
-  tag: "12.0.6@sha256:e0cd25f18afe3133a810ae5a0dc2fa4320c3e9690542678c79e89a79fb2b75e4"
+  tag: "12.0.7@sha256:c9ca6a61d7f3788711b8a38dbc6580bfe050411c90d70975784d2797a0a3acb6"
   # IfNotPresent = reuse the node's cached image (it's digest-pinned, so cache
   # is safe). Use "Always" only if you re-tag the same version with new content.
   pullPolicy: IfNotPresent
@@ -47,7 +47,7 @@ nginx:
     # Aligned with the app image / Chart.yaml appVersion (12.0.0) so nginx
     # serves the matching GLPI static assets (css/js). Verified to exist on
     # Docker Hub (digest = manifest-list digest of tag 12.0.0).
-    tag: "12.0.6@sha256:dc9380c37bc3701fc8d03842166ef7c4b2601b974131f89be6d3e5267d9b64f4"
+    tag: "12.0.7@sha256:c7d71c5b60f0af385157d7d5eed755d16b72c3a0642e06cc7d7eceb54e0894d0"
     pullPolicy: IfNotPresent
 
   # The Service for nginx = the HTTP entry point. The Ingress and the
